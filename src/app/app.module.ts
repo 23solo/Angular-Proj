@@ -1,3 +1,4 @@
+import { PromotionService } from './services/promotion.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,7 +46,8 @@ import { DishService } from './services/dish.service';
     MatCardModule
   ],
   providers: [
-    DishService
+    DishService,
+    PromotionService
   ],
   bootstrap: [AppComponent]
 })
