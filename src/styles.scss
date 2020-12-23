@@ -16,6 +16,8 @@ $accent-color:         #FFC107;
 $primary-text-color:   #212121;
 $secondary-text-color: #757575;
 $divider-color:        #BDBDBD;
+$background-red: #a80e0e;
+$background-green: #15e615;
 
 @mixin zero-margin($pad-up-down, $pad-left-right) {
     margin: 0px auto;
@@ -36,8 +38,14 @@ body {
     display: flex;
 }
 
+.background-green{
+  background-color: $background-green!important;
+}
 .background-primary {
     background-color: $background-dark!important;
+  }
+.background-red{
+    background-color : $background-red!important;
   }
 .background-accent {
     background-color: $accent-color!important;

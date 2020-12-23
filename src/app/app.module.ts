@@ -21,6 +21,9 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -48,11 +51,14 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     MatCheckboxModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MatToolbarModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     MatListModule,
     MatGridListModule,
     MatButtonModule,
@@ -65,7 +71,7 @@ import { LoginComponent } from './login/login.component';
   ],
   entryComponents:[
     LoginComponent
-  ]
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

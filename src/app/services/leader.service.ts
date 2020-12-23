@@ -7,13 +7,13 @@ import { Leader } from './../shared/leader';
 export class LeaderService {
 
   constructor() { }
-  getLeaders():Leader[]{
-    return LEADERS;
+  getLeaders():Promise<Leader[]>{
+    return Promise.resolve(LEADERS);
   }
-  getFeaturedLeader() : Leader{
-    return LEADERS.filter((feat)=> feat.featured)[0];
+  getFeaturedLeader() : Promise<Leader>{
+    return Promise.resolve(LEADERS.filter((feat)=> feat.featured)[0]);
   }
-  getLeader(id:string) : Leader{
-    return LEADERS.filter((feat) => feat.id === id)[0];
+  getLeader(id:string) : Promise<Leader>{
+    return Promise.resolve(LEADERS.filter((feat) => feat.id === id)[0]);
   }
 }
