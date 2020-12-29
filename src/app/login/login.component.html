@@ -18,10 +18,12 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput #password = "ngModel" required placeholder="Password" type="password"
+        <input matInput #password = "ngModel" required minlength = "6" placeholder="Password" type="password"
         [(ngModel)] = "user.password" name="password">
         <mat-error *ngIf =" password.errors?.required">
           Password is a Mandatory Field
+        </mat-error><mat-error *ngIf =" password.errors?.minlength">
+          Password length should be more than 5
         </mat-error>
 
       </mat-form-field>

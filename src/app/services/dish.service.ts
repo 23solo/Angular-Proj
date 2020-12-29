@@ -1,7 +1,8 @@
 import { Dish } from './../shared/dish';
 import { Injectable } from '@angular/core';
 import { DISHES } from '../shared/dishes';
-import { resolve } from 'url';
+import { Observable,of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,24 +10,20 @@ import { resolve } from 'url';
 export class DishService {
 
   constructor() { }
-  getDishes() : Promise<Dish[]> {
-    return new Promise( resolve =>{
-      setTimeout(() => resolve(DISHES),2000);
-    });
+  getDishes() : Observable<Dish[]> {
+    return of(DISHES).pipe(delay(2000));
   }
 
-  getDish(id: string):Promise<Dish>{
-    return new Promise(resolve => {
-      setTimeout(() =>
-        resolve(DISHES.filter((dish) =>  dish.id === id )[0])
-      , 2000);
-    }); 
+  getDish(id: string):Observable<Dish>{
+    return of(DISHES.filter((dish) =>  dish.id === id )[0]).pipe(delay(2000));
   }
 
-  getFeaturedDish(): Promise<Dish>{
-    return new Promise(resolve => {
-      setTimeout(() => resolve(DISHES.filter((dish)=> dish.featured)[0]),2000);
-    }) ;
+  getFeaturedDish(): Observable<Dish>{
+    return of(DISHES.filter((dish)=> dish.featured)[0]).pipe(delay(2000));  
+  }
+  getDishIds() : Observable<String[] | any>
+  {
+    return of(DISHES.map(dish => dish.id)); // map takes the array and gives out the modified array
   }
 
 }
