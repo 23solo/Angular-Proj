@@ -47,9 +47,56 @@
         <P matLine>{{comment.rating}} Stars</P>
         <p matLine>--{{comment.author}} {{comment.date | date}}</p>
       </mat-list-item>
-    </mat-list>
+    
+      <mat-list-item *ngIf="reviewForm.status == 'VALID' ">
+        <p mat-line>
+          {{reviewForm.value.comment}}
+        </p>
+        <p mat-line>
+          {{reviewForm.value.stars}} Stars
+        </p>
+        <p mat-line>
+          --{{reviewForm.value.name}}
+        </p>
+      </mat-list-item>
+      <mat-list-item *ngIf="review">
+        <p matLine>
 
+            <span> {{review.comment}} </span>
+        </p>
+        <p matLine>
+            <span> {{review.stars}} Stars </span>
+        </p>
+        <p matLine>
+            <span> -- {{review.name}} {{review.date | date}}</span>
+        </p>
+    </mat-list-item>
+    </mat-list>
+    <div>
+    <form novalidate [formGroup]="reviewForm" #rform="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <mat-form-field class="half-width">
+          <input matInput formControlName="name" placeholder=" Name" type="text" required>
+          <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+        </mat-form-field>
+      </p>
+      <mat-slider thumbLabel tickInterval="1" formControlName="stars" step="1" min="1" max="5" ></mat-slider>
+      <p>
+        <mat-form-field class="full-width">
+          <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
+          <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+        </mat-form-field>
+      </p>
+    <p *ngIf ="reviewForm.status == 'VALID'">
+      <button type="submit"  mat-button class="background-green ">Submit</button>
+    </p>
+    <p *ngIf ="reviewForm.status == 'INVALID'">
+      <button type="submit" disabled mat-button class="background-red text-floral-white">Submit</button>
+    </p>
+    </form>
+  </div>
   </div>
   
-
+  
 </div>
+

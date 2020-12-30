@@ -42,36 +42,22 @@
     <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
-          <input matInput formControlName="firstname" placeholder="First Name" type="text" >
-          <mat-error *ngIf="feedbackForm.get('firstname').hasError('required') && feedbackForm.get('firstname').touched">
-            First Name is Required
-          </mat-error>
+          <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+          <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="lastname" placeholder="Last Name" type="text" >
-          <mat-error *ngIf="feedbackForm.get('lastname').hasError('required') && feedbackForm.get('lastname').touched">
-            Last Name is Required
-          </mat-error>
+          <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+          <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
         </mat-form-field>
       </p>
       <p>
         <mat-form-field class="half-width">
-          <input matInput formControlName="telnum" placeholder="Ph. Number" type="tel" >
-          <mat-error *ngIf="feedbackForm.get('telnum').hasError('required') && feedbackForm.get('telnum').touched ">
-            Phone Number is Required
-          </mat-error>
-          <mat-error *ngIf="feedbackForm.get('telnum').hasError('minlength') || feedbackForm.get('telnum').hasError('maxlength') ">
-            Phone Number is Invalid
-          </mat-error>
+          <input matInput formControlName="telnum" placeholder="Phone Number" type="tel" pattern="[0-9]*" minlength maxlength required>
+          <mat-error *ngIf="formErrors.telnum">{{formErrors.telnum}}</mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="email" placeholder="Email" type="email" >
-          <mat-error *ngIf="feedbackForm.get('email').hasError('required') && feedbackForm.get('email').touched ">
-            E-mail is Required
-          </mat-error>
-          <mat-error *ngIf ="feedbackForm.get('email').hasError('email')">
-            Email is INVALID
-          </mat-error>
+          <input matInput formControlName="email" placeholder="Email" type="email" email required>
+          <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
         </mat-form-field>
       </p>
       <table class="form-size">
