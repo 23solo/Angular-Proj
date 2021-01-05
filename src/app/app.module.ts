@@ -1,3 +1,4 @@
+import { baseURL } from './shared/baseurl';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,12 +24,14 @@ import { ContactComponent } from './contact/contact.component';
 
 import { MatCardModule } from '@angular/material/card';
 import {MatSliderModule} from '@angular/material/slider';
+import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+
 
 import { LeaderService } from './services/leader.service';
 import { PromotionService } from './services/promotion.service';
@@ -50,6 +53,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     MatDialogModule,
+    HttpClientModule,
     FormsModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
@@ -71,7 +75,8 @@ import { LoginComponent } from './login/login.component';
   providers: [
     DishService,
     PromotionService,
-    LeaderService
+    LeaderService,
+    {provide :  'BaseURL', useValue : baseURL }
   ],
   entryComponents:[
     LoginComponent
