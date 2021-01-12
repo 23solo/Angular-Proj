@@ -1,6 +1,6 @@
 import { Leader } from './../shared/leader';
 import { LeaderService } from './../services/leader.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -9,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class AboutComponent implements OnInit {
 
   leaders : Leader[];
-  constructor(private leaderService: LeaderService) { }
+  ledErrMsg: string;
+  constructor(private leaderService: LeaderService,
+    @Inject('BaseURL') private BaseURL) { }
   ngOnInit() {
-    this.leaderService.getLeaders().subscribe((leaders)=> this.leaders =leaders);
+    this.leaderService.getLeaders().subscribe((leaders)=> this.leaders =leaders, err => this.ledErrMsg = <any>err);
+    console.log();
   }
 
 

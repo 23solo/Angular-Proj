@@ -11,6 +11,7 @@ import { Dish } from '../shared/dish';
 export class MenuComponent implements OnInit {
 
   dishes: Dish[] ;
+  errMsg : string;
 
   
   constructor(private dishService: DishService,
@@ -18,7 +19,8 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     this.dishService.getDishes()
-    .subscribe((dishes) => this.dishes = dishes);
+    .subscribe((dishes) => this.dishes = dishes, 
+    err => this.errMsg = <any>err );
 
   }
 
