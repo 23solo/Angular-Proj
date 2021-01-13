@@ -39,7 +39,8 @@
     <h3>Send us your Feedback</h3>
     <!-- <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p> -->
 
-    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+
+    <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()" [hidden] = "feedback" [@flyInOut]>
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
@@ -74,15 +75,46 @@
         </table>
       <p>
         <mat-form-field class="full-width">
-          <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
+          <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12 required>
+            <mat-error *ngIf="formErrors.message">{{formErrors.message}}</mat-error>
+          </textarea>
         </mat-form-field>
       </p>
     <p *ngIf ="feedbackForm.status == 'VALID'">
-      <button type="submit"  mat-button class="background-green ">Submit</button>
+      <button type="submit" mat-button class="background-green ">Submit</button>
     </p>
     <p *ngIf ="feedbackForm.status == 'INVALID'">
       <button type="submit" disabled mat-button class="background-red text-floral-white">Submit</button>
     </p>
-    </form>
+    </form>  
+  </div>
+  <mat-list *ngIf = "feedback && submit == false" [@expand]>
+    <h4>Your Submission</h4>
+    <mat-list-item>
+      First Name : {{feedback.firstname}}
+    </mat-list-item>
+
+    <mat-list-item>
+      Last Name : {{feedback.lastname}}
+    </mat-list-item>
+    <mat-list-item>
+      Tel. Number : {{feedback.telnum}}
+    </mat-list-item>
+    <mat-list-item>
+      Email : {{feedback.email}}
+    </mat-list-item>
+    <mat-list-item>
+      Contact You? : {{feedback.agree}}
+    </mat-list-item>
+    <mat-list-item *ngIf ="feedback.contactType">
+      How ??: {{feedback.contactType}}
+    </mat-list-item>
+    <mat-list-item>
+      Feedback : {{feedback.message}}
+    </mat-list-item>
+  </mat-list>
+
+  <div fxFlex *ngIf  = "submit" >
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
   </div>
 </div>
